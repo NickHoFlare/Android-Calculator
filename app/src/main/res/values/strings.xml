@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Calculator</string>
+    <string name="app_message">Hello World!</string>
+    <string name="calculator_instruction">Tap on the keypad to enter numbers/operators!</string>
+    <string name="ignore_me_text">Hello ignore me!</string>
+    <string name="footer_text">Nick\'s Amazing Calculating Machine, 2017</string>
 </resources>

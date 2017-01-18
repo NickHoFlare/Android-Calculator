@@ -3,4 +3,8 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="colorMath">#CCCC11</color>
+    <color name="colorClear">#CC1111</color>
+    <color name="colorDecimal">#656992</color>
+    <color name="colorEquals">#11CC11</color>
 </resources>
