@@ -110,7 +110,9 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 int textLength = binding.editText.getText().length();
 
-                binding.editText.setText(binding.editText.getText().subSequence(0, textLength-1));
+                if (textLength >= 1) {
+                    binding.editText.setText(binding.editText.getText().subSequence(0, textLength-1));
+                }
             }
         });
 
@@ -157,13 +159,57 @@ public class MainActivity extends AppCompatActivity {
                 binding.editText.setText(binding.editText.getText() + "/");
             }
         });
+
+        binding.equalsKey.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                performCalculation();
+                CURRENT_ACTION = '~';
+            }
+        });
     }
 
     // If no current action, default to ~
     private void performCalculation() {
         String activeText = binding.editText.getText().toString();
+        double left = 0;
+        double right = 0;
+        double result = 0;
+        int operatorLocation = 0;
 
+        if (CURRENT_ACTION == ADDITION) {
+            operatorLocation = activeText.indexOf('+');
+            if (operatorLocation != activeText.length() && operatorLocation != 0) {
+                left = Double.parseDouble(activeText.substring(0, operatorLocation));
+                right = Double.parseDouble(activeText.substring(operatorLocation + 1, activeText.length()));
+                result = left + right;
+            }
+        } else if (CURRENT_ACTION == SUBTRACTION) {
+            operatorLocation = activeText.indexOf('-');
+            if (operatorLocation != activeText.length() && operatorLocation != 0) {
+                left = Double.parseDouble(activeText.substring(0, operatorLocation));
+                right = Double.parseDouble(activeText.substring(operatorLocation + 1, activeText.length()));
+                result = left - right;
+            }
+        } else if (CURRENT_ACTION == MULTIPLICATION) {
+            operatorLocation = activeText.indexOf('*');
+            if (operatorLocation != activeText.length() && operatorLocation != 0) {
+                left = Double.parseDouble(activeText.substring(0, operatorLocation));
+                right = Double.parseDouble(activeText.substring(operatorLocation + 1, activeText.length()));
+                result = left * right;
+            }
+        } else if (CURRENT_ACTION == DIVISION) {
+            operatorLocation = activeText.indexOf('/');
+            if (operatorLocation != activeText.length() && operatorLocation != 0) {
+                left = Double.parseDouble(activeText.substring(0, operatorLocation));
+                right = Double.parseDouble(activeText.substring(operatorLocation + 1, activeText.length()));
+                result = left / right;
+            }
+        }
 
+        if (CURRENT_ACTION != '~') {
+            binding.editText.setText(String.valueOf(result));
+        }
     }
 
 }
